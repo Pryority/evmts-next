@@ -1,10 +1,10 @@
-require("@nomicfoundation/hardhat-foundry");
+require("@nomicfoundation/hardhat-foundry")
 
 const config = {
-  solidity: "0.8.20",
+  solidity: "^0.8.20",
   paths: {
     src: "./contracts",
   },
-};
+}
 
-module.exports = config;
+module.exports = config

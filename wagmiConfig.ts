@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import { getDefaultWallets } from "@rainbow-me/rainbowkit";
-import { configureChains, createConfig } from "wagmi";
-import { mainnet, optimismGoerli } from "wagmi/chains";
-import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+import { getDefaultWallets } from "@rainbow-me/rainbowkit"
+import { configureChains, createConfig } from "wagmi"
+import { mainnet, optimismGoerli } from "wagmi/chains"
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc"
 
-const walletConnectProjectId = "898f836c53a18d0661340823973f0cb4";
+const walletConnectProjectId = "898f836c53a18d0661340823973f0cb4"
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [mainnet, optimismGoerli],
@@ -21,26 +21,26 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
               process.env.VITE_RPC_URL_420 ??
               optimismGoerli.rpcUrls.public.http[0],
           },
-        };
-        return [1, 420].includes(chain.id) ? urls[chain.id as 1 | 420] : null;
+        }
+        return [1, 420].includes(chain.id) ? urls[chain.id as 1 | 420] : null
       },
     }),
   ]
-);
+)
 
 const { connectors } = getDefaultWallets({
   appName: "My wagmi + RainbowKit App",
   chains,
   projectId: walletConnectProjectId,
-});
+})
 
 export const config = createConfig({
   autoConnect: true,
   connectors,
   publicClient,
   webSocketPublicClient,
-});
+})
 
-type SupportedChainIds = `${(typeof chains)[number]["id"]}`;
+type SupportedChainIds = `${(typeof chains)[number]["id"]}`
 
-export { chains, type SupportedChainIds };
+export { chains, type SupportedChainIds }

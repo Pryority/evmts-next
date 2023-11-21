@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.20;
+pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -19,10 +19,9 @@ contract WagmiMintExample is ERC721 {
     /// @notice Allows an address to mint
     function mint() external {
         uint256 tokenId = nextTokenId;
-        while (_exists(tokenId)) {
-            unchecked {
-                tokenId++;
-            }
+        require(tokenId == nextTokenId, "Token ID is taken");
+        unchecked {
+            tokenId++;
         }
         _safeMint(msg.sender, tokenId);
         unchecked {
@@ -34,7 +33,7 @@ contract WagmiMintExample is ERC721 {
     /// @notice Returns the token URI for a given token by ID
     /// @param tokenId Token ID to mint.
     function mint(uint256 tokenId) external {
-        require(!_exists(tokenId), "Token ID is taken");
+        require(tokenId == nextTokenId, "Token ID is taken");
         _safeMint(msg.sender, tokenId);
         unchecked {
             totalSupply++;
