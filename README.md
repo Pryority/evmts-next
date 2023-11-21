@@ -1,6 +1,10 @@
-# next-template
+# evmts-next
 
-A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
+## Next.js App Router + [EVMTs](https://github.com/evmts) + shadcn/ui
+
+EVMts makes solidity a first-class citizen in TypeScript via allowing you to import your solidity files directly into your typescript code.
+
+### Built with next-template - A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
 
 ## Usage
 
@@ -11,6 +15,7 @@ npx create-next-app -e https://github.com/shadcn/next-template
 ## Features
 
 - Next.js 13 App Directory
+- EVMTs to import solidity files directly into typescript code.
 - Radix UI Primitives
 - Tailwind CSS
 - Icons from [Lucide](https://lucide.dev)
