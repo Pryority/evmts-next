@@ -16,13 +16,6 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["./*"]
-      // "@components": ["./components/*"],
-      // "@app": ["./app/*"],
-      // "@lib": ["./lib/*"],
-      // "@config": ["./config/*"],
-      // "@types": ["./types/*"],
-      // "@wagmi": ["./wagmi/*"],
-      // "@styles": ["./styles/*"],
     },
     "plugins": [
       {
