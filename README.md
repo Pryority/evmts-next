@@ -2,7 +2,7 @@
 
 ## 🏗️ Next.js App Router + [EVMTs](https://github.com/evmts) + shadcn/ui
 
-### EVMts makes solidity a first-class citizen in TypeScript via allowing you to import your solidity files directly into your typescript code.
+### EVMts makes solidity a first-class citizen in TypeScript via allowing you to import your solidity files directly into your typescript code
 
 ## Features
 
@@ -20,7 +20,7 @@
 
 Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
 
-#### Built with next-template - A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
+### Built with next-template - A Next.js 13 template for building apps with Radix UI and Tailwind CSS
 
 ### How-To: next-template
 
