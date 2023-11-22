@@ -6,34 +6,35 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 
-// @ts-ignore
-import { WagmiMintExample } from "../../contracts/WagmiMintExample.sol"
+import { WagmiMintExample } from "@/contracts/WagmiMintExample.sol"
+import { addresses } from "@/lib/addresses"
 
 export const WagmiReads = () => {
-  const chainId = useChainId()
-
   const { address, isConnected } = useAccount()
+
+  const chainId = useChainId()
 
   const { data: balance } = useContractRead({
     /**
      * Spreading in a method will spread abi, address and args
      * Hover over balanceOf and click go-to-definition should take you to the method definition in solidity if compiling from solidity
      */
-    ...WagmiMintExample.read({ chainId }).balanceOf(address as Address),
+    ...WagmiMintExample.read.balanceOf(address as Address),
     enabled: isConnected,
   })
   const { data: totalSupply } = useContractRead({
-    ...WagmiMintExample.read({ chainId }).totalSupply(),
-    enabled: isConnected,
+    ...WagmiMintExample.read.totalSupply(),
+    address: addresses[WagmiMintExample.name][chainId as 1],
+    onError: console.error
   })
   const { data: symbol } = useContractRead({
-    ...WagmiMintExample.read({ chainId }).symbol(),
-    enabled: isConnected,
+    ...WagmiMintExample.read.symbol(),
+    address: addresses[WagmiMintExample.name][chainId as 1],
+    onError: console.error
   })
 
   return (

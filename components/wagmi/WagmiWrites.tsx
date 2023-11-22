@@ -21,20 +21,21 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-// @ts-ignore
-import { WagmiMintExample } from "../../contracts/WagmiMintExample.sol"
+import { WagmiMintExample } from "@/contracts/WagmiMintExample.sol"
+import { addresses } from "@/lib/addresses"
 
 export const WagmiWrites = () => {
-  const chainId = useChainId()
-
   const { address, isConnected } = useAccount()
+
+  const chainId = useChainId()
 
   const { data, refetch } = useContractRead({
     /**
      * Spreading in a method will spread abi, address and args
      * Hover over balanceOf and click go-to-definition should take you to the method definition in solidity if compiling from solidity
      */
-    ...WagmiMintExample.read({ chainId }).balanceOf(address as Address),
+    ...WagmiMintExample.read.balanceOf(address as Address),
+    address: addresses[WagmiMintExample.name][chainId as 1],
     enabled: isConnected,
   })
 
@@ -43,7 +44,8 @@ export const WagmiWrites = () => {
      * Not calling the function will return abi and address without args
      * This is useful for when you want to lazily call the function like in case of useContractWrite
      */
-    ...WagmiMintExample.write({ chainId }).mint,
+    ...WagmiMintExample.write.mint,
+    address: addresses[WagmiMintExample.name][chainId as 1],
   })
 
   useWaitForTransaction({
@@ -77,9 +79,7 @@ export const WagmiWrites = () => {
               )}
               onClick={() =>
                 writeMint(
-                  WagmiMintExample.write({ chainId }).mint(
-                    BigInt(getRandomInt())
-                  )
+                  WagmiMintExample.write.mint(BigInt(getRandomInt())),
                 )
               }
             >
