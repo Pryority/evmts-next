@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
+// @ts-ignore
 import { WagmiMintExample } from "../../contracts/WagmiMintExample.sol"
 
 export const WagmiReads = () => {

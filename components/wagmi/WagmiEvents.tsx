@@ -3,6 +3,7 @@
 import { useReducer } from "react"
 import { useAccount, useBlockNumber, useChainId, useContractEvent } from "wagmi"
 
+// @ts-ignore
 import { WagmiMintExample } from "../../contracts/WagmiMintExample.sol"
 
 export const WagmiEvents = () => {
