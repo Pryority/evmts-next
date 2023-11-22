@@ -12,6 +12,14 @@ import {
 import { cn } from "@/lib/utils/cn"
 import { getRandomInt } from "@/lib/utils/getRandomInt"
 import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 import { WagmiMintExample } from "../../contracts/WagmiMintExample.sol"
 
@@ -46,29 +54,37 @@ export const WagmiWrites = () => {
   })
 
   return (
-    <div className={`flex flex-col gap-2`}>
-      <p className="text-2xl font-bold tracking-tighter">Writes</p>
-      <div
-        className={`flex w-full items-center rounded-md border bg-secondary p-2`}
-      >
-        <div className={`flex w-full justify-between`}>
-          <div>balance: {data?.toString()}</div>
-        </div>
-        <Button
-          type="button"
-          variant={"outline"}
-          className={cn(
-            "border border-stone-700 bg-stone-500 text-white hover:bg-stone-400"
-          )}
-          onClick={() =>
-            writeMint(
-              WagmiMintExample.write({ chainId }).mint(BigInt(getRandomInt()))
-            )
-          }
-        >
-          Mint
-        </Button>
-      </div>
-    </div>
+    <section className="flex flex-col gap-2">
+      <p className="text-3xl font-bold tracking-tighter">Writes</p>
+      <ul className={`flex flex-col gap-2`}>
+        <Card>
+          <CardHeader>
+            <CardTitle>balanceOf</CardTitle>
+            <CardDescription>{address}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>{data?.toString()}</p>
+          </CardContent>
+          <CardFooter className="w-full justify-end">
+            <Button
+              type="button"
+              variant={"outline"}
+              className={cn(
+                "border-2 border-primary bg-secondary text-primary invert hover:bg-secondary/80"
+              )}
+              onClick={() =>
+                writeMint(
+                  WagmiMintExample.write({ chainId }).mint(
+                    BigInt(getRandomInt())
+                  )
+                )
+              }
+            >
+              Mint
+            </Button>
+          </CardFooter>
+        </Card>
+      </ul>
+    </section>
   )
 }
