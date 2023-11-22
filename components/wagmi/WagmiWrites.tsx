@@ -47,7 +47,7 @@ export const WagmiWrites = () => {
 
   return (
     <div className={`flex flex-col gap-2`}>
-      <p className="text-2xl">Writes</p>
+      <p className="text-2xl font-bold tracking-tighter">Writes</p>
       <div
         className={`flex w-full items-center rounded-md border bg-secondary p-2`}
       >
