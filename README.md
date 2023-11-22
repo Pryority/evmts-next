@@ -14,7 +14,7 @@
 - Dark mode with `next-themes`
 - Tailwind CSS class sorting, merging and linting.
 
-![EVMTs Next Demo](./public/demo-image.png)
+![EVMTs Next Demo](./public/demo.png)
 
 ## License
 
