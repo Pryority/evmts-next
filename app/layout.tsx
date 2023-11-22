@@ -1,4 +1,5 @@
 import "@/styles/globals.css"
+import "@rainbow-me/rainbowkit/styles.css"
 
 import { Metadata } from "next"
 import { chains, config } from "@/wagmiConfig"
@@ -39,21 +40,17 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <head />
         <body className={"min-h-screen bg-background font-sans antialiased"}>
-          <WagmiConfig config={config}>
-            <RainbowKitProvider chains={chains}>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-              >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <WagmiConfig config={config}>
+              <RainbowKitProvider chains={chains}>
                 <div className="relative flex min-h-screen flex-col">
                   <SiteHeader />
                   <div className="flex-1">{children}</div>
                 </div>
                 <TailwindIndicator />
-              </ThemeProvider>
-            </RainbowKitProvider>
-          </WagmiConfig>
+              </RainbowKitProvider>
+            </WagmiConfig>
+          </ThemeProvider>
         </body>
       </html>
     </>
