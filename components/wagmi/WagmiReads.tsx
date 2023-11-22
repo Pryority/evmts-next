@@ -43,10 +43,12 @@ export const WagmiReads = () => {
         <Card>
           <CardHeader>
             <CardTitle>balanceOf</CardTitle>
-            <CardDescription>{address}</CardDescription>
+            <CardDescription>
+              {address ? address : "Required: Connection"}
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <p>{balance?.toString()}</p>
+            <p>{balance ? balance?.toString() : "Required: Connection"}</p>
           </CardContent>
         </Card>
         <Card>

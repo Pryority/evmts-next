@@ -61,10 +61,12 @@ export const WagmiWrites = () => {
         <Card>
           <CardHeader>
             <CardTitle>balanceOf</CardTitle>
-            <CardDescription>{address}</CardDescription>
+            <CardDescription>
+              {address ? address : "Required: Connection"}
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <p>{data?.toString()}</p>
+            <p>{data ? data?.toString() : "Required: Connection"}</p>
           </CardContent>
           <CardFooter className="w-full justify-end">
             <Button
