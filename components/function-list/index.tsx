@@ -1,28 +1,46 @@
 "use client"
 
-import { Suspense, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
+import { Progress } from "@/components/ui/progress"
 import { WagmiReads } from "@/components/wagmi/WagmiReads"
 import { WagmiWrites } from "@/components/wagmi/WagmiWrites"
 
-const LoadingFallback = () => (
-  <div className={``}>
-    <div>Loading...</div>
-  </div>
-)
-
 export default function FunctionList() {
   const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const [progressValue, setProgressValue] = useState(0)
+
+  useEffect(() => {
+    while (!mounted) {
+      const interval = setInterval(() => {
+        setProgressValue((prevValue) => {
+          const newValue = prevValue + 90
+          return newValue <= 100 ? newValue : 100
+        })
+      }, 0)
+
+      // Simulate a delay for demonstration purposes
+      const delay = setTimeout(() => {
+        setMounted(true)
+        clearInterval(interval)
+        clearTimeout(delay)
+      }, 50) // Adjust the delay as needed
+
+      return () => {
+        clearInterval(interval)
+        clearTimeout(delay)
+      }
+    }
+  }, [mounted])
+
+  if (!mounted) {
+    return <Progress value={progressValue} />
+  }
 
   return (
-    <Suspense fallback={<LoadingFallback />}>
-      {mounted && (
-        <section className="grid grid-cols-2 gap-8">
-          <WagmiReads />
-          <WagmiWrites />
-        </section>
-      )}
-    </Suspense>
+    <section className="grid grid-cols-2 gap-8">
+      <WagmiReads />
+      <WagmiWrites />
+    </section>
   )
 }
