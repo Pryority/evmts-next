@@ -1,9 +1,9 @@
 "use client"
 
 import { useReducer } from "react"
+import { WagmiMintExample } from "@/contracts/WagmiMintExample.sol"
 import { useAccount, useBlockNumber, useChainId, useContractEvent } from "wagmi"
 
-import { WagmiMintExample } from "@/contracts/WagmiMintExample.sol"
 import { addresses } from "@/lib/addresses"
 
 export const WagmiEvents = () => {

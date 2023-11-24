@@ -1,7 +1,9 @@
 "use client"
 
+import { WagmiMintExample } from "@/contracts/WagmiMintExample.sol"
 import { Address, useAccount, useChainId, useContractRead } from "wagmi"
 
+import { addresses } from "@/lib/addresses"
 import {
   Card,
   CardContent,
@@ -9,9 +11,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
-import { WagmiMintExample } from "@/contracts/WagmiMintExample.sol"
-import { addresses } from "@/lib/addresses"
 
 export const WagmiReads = () => {
   const { address, isConnected } = useAccount()
@@ -29,12 +28,12 @@ export const WagmiReads = () => {
   const { data: totalSupply } = useContractRead({
     ...WagmiMintExample.read.totalSupply(),
     address: addresses[WagmiMintExample.name][chainId as 1],
-    onError: console.error
+    onError: console.error,
   })
   const { data: symbol } = useContractRead({
     ...WagmiMintExample.read.symbol(),
     address: addresses[WagmiMintExample.name][chainId as 1],
-    onError: console.error
+    onError: console.error,
   })
 
   return (
