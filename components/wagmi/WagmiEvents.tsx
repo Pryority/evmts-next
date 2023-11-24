@@ -3,8 +3,8 @@
 import { useReducer } from "react"
 import { useAccount, useBlockNumber, useChainId, useContractEvent } from "wagmi"
 
-// @ts-ignore
-import { WagmiMintExample } from "../../contracts/WagmiMintExample.sol"
+import { WagmiMintExample } from "@/contracts/WagmiMintExample.sol"
+import { addresses } from "@/lib/addresses"
 
 export const WagmiEvents = () => {
   const chainId = useChainId()
@@ -23,13 +23,13 @@ export const WagmiEvents = () => {
    * - Don't call fn and it is an object without args
    * - Call fn with args and fromBlock etc. and it returns an object with args
    */
-  const transferFromEvents = WagmiMintExample.events({ chainId }).Transfer({
+  const transferFromEvents = WagmiMintExample.events.Transfer({
     fromBlock: blockNumber && blockNumber - BigInt(1_000),
     args: {
       from: address,
     },
   })
-  const transferToEvents = WagmiMintExample.events().Transfer({
+  const transferToEvents = WagmiMintExample.events.Transfer({
     fromBlock: blockNumber && blockNumber - BigInt(1_000),
     args: {
       to: address,
@@ -38,12 +38,14 @@ export const WagmiEvents = () => {
 
   useContractEvent({
     ...transferFromEvents,
+    address: addresses[WagmiMintExample.name][chainId as 1],
     listener: (event) => {
       concatEvents([event])
     },
   })
   useContractEvent({
     ...transferToEvents,
+    address: addresses[WagmiMintExample.name][chainId as 1],
     listener: (event) => {
       concatEvents([event])
     },
